@@ -4,7 +4,6 @@ const url = 'mongodb+srv://smantusingh123:1234@cluster0.zegeqeb.mongodb.net/myda
 
 mongoose.connect(url)
 .then((result) => {
-
     console.log('database connected');
 })
     
