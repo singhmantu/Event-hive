@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "formik": "^2.2.9",
+    "react-hot-toast": "^2.4.1",
+    "react-router-dom": "^6.11.0",
+    "sweetalert2": "^11.7.3",
+    "sweetalert2-react-content": "^5.0.7"
+  }
+}
