@@ -1,13 +1,12 @@
-import { useFormik, validateYupSchema } from "formik";
+import { useFormik } from "formik";
 import React from "react";
 import Swal from "sweetalert2";
 import * as Yup from "yup";
-
 const Signup = () => {
   const SignupSchema = Yup.object().shape({
     name: Yup.string()
       .min(2, "Too Short!")
-      .max(10, "Too Long!")
+      .max(50, "Too Long!")
       .required("Required"),
     email: Yup.string().email("Invalid email").required("Required"),
     password: Yup.string()
@@ -16,9 +15,9 @@ const Signup = () => {
         /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
         "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character"
       ),
-    cPassword: Yup.string()
-      .oneOf([Yup.ref("password"), null], "Passwords doesn't match")
-      .required("Confirm Your Password"),
+    cpassword: Yup.string()
+      .oneOf([Yup.ref("password"), null], "Passwords doesnt match")
+      .required("Confirm your password"),
   });
 
   const signupForm = useFormik({
@@ -26,35 +25,35 @@ const Signup = () => {
       name: "",
       email: "",
       password: "",
-      cPassword: "",
+      cpassword: "",
     },
     onSubmit: async (values, { setSubmitting }) => {
       // setSubmitting(true);
+      // values.role  = "admin";
       console.log(values);
 
       // making a request to backend
       // 1. URL
       // 2. request method
-      // 3. data 
+      // 3. data
       // 4. data format
 
-      const res = await fetch('http://localhost:5000/user/add', {
-        method: 'POST',
-        body : JSON.stringify(values),
-        headers : {
-          'Content-Type' : 'application/json'
-        }
+      const res = await fetch("http://localhost:5000/user/add", {
+        method: "POST",
+        body: JSON.stringify(values),
+        headers: {
+          "Content-Type": "application/json",
+        },
       });
 
       console.log(res.status);
-      if(res.status === 200){
+      if (res.status === 200) {
         Swal.fire({
-          icon : "success",
-          title: "Well done",
+          icon: "success",
+          title: "well done",
           text: "You have successfully registered",
         });
       }
-
     },
     validationSchema: SignupSchema,
   });
@@ -93,7 +92,7 @@ const Signup = () => {
                       </div>
                       <div className="d-flex flex-row align-items-center mb-4">
                         <i className="fas fa-envelope fa-lg me-3 fa-fw" />
-                        <div className="flex-fill mb-0">
+                        <div className=" flex-fill mb-0">
                           <input
                             type="email"
                             id="email"
@@ -109,7 +108,7 @@ const Signup = () => {
                       </div>
                       <div className="d-flex flex-row align-items-center mb-4">
                         <i className="fas fa-lock fa-lg me-3 fa-fw" />
-                        <div className="flex-fill mb-0">
+                        <div className=" flex-fill mb-0">
                           <input
                             type="password"
                             id="password"
@@ -128,14 +127,14 @@ const Signup = () => {
                         <div className=" flex-fill mb-0">
                           <input
                             type="password"
-                            id="cPassword"
-                            value={signupForm.values.cPassword}
+                            id="cpassword"
+                            value={signupForm.values.cpassword}
                             onChange={signupForm.handleChange}
                             className="form-control"
                             placeholder="Repeat your password"
                           />
                           <span className="text-danger">
-                            {signupForm.errors.cPassword}
+                            {signupForm.errors.cpassword}
                           </span>
                         </div>
                       </div>
@@ -160,7 +159,11 @@ const Signup = () => {
                           className="btn btn-primary btn-lg"
                           disabled={signupForm.isSubmitting}
                         >
-                          { signupForm.isSubmitting ? <span className="spinner-border spinner-border-sm"></span> : '' }
+                          {signupForm.isSubmitting ? (
+                            <span className="spinner-border spinner-border-sm"></span>
+                          ) : (
+                            ""
+                          )}
                           Register
                         </button>
                       </div>
