@@ -1,8 +1,11 @@
 import { useFormik } from "formik";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const Login = () => {
+  const navigate = useNavigate();
+
   const loginForm = useFormik({
     initialValues: {
       email: "",
@@ -12,28 +15,36 @@ const Login = () => {
     onSubmit: async (values) => {
       console.log(values);
 
-      const res = await fetch('http://localhost:5000/user/authenticate', {
-        method: 'POST',
-        body : JSON.stringify(values), 
-        headers : {
-          'Content-Type' : 'application/json'
-        }
+      const res = await fetch("http://localhost:5000/user/authenticate", {
+        method: "POST",
+        body: JSON.stringify(values),
+        headers: {
+          "Content-Type": "application/json",
+        },
       });
 
-      if(res.status === 200){ 
-          Swal.fire({
-            icon : "success",
-            title: "Success",
-            text: "Loged in Successfully"
-          })
-      }else if(res.status === 401){
+      if (res.status === 200) {
         Swal.fire({
-          icon : "error",
-          title: "Error",
-          text: "Invalid Credentials"
-        })
-      }
+          icon: "success",
+          title: "Success",
+          text: "Logged in Successfully",
+        });
 
+        const data = await res.json();
+        if (data.role === "admin") {
+          sessionStorage.setItem("admin", JSON.stringify(data));
+          navigate("/admin/addorganizer");
+        } else {
+          sessionStorage.setItem("user", JSON.stringify(data));
+          navigate("/user/browseorganiser");
+        }
+      } else if (res.status === 401) {
+        Swal.fire({
+          icon: "error",
+          title: "Error",
+          text: "Invalid Credentials",
+        });
+      }
     },
   });
 

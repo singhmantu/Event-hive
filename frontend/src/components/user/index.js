@@ -2,7 +2,7 @@ import React from 'react'
 import Navbar from './Navbar';
 import { Outlet } from 'react-router-dom';
 
-const Main = () => {
+const User = () => {
   return (
     <div>
       <Navbar></Navbar>
@@ -11,4 +11,4 @@ const Main = () => {
   )
 }
 
-export default Main;
+export default User;

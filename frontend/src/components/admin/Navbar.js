@@ -50,8 +50,8 @@ const Navbar = () => {
             </NavLink>
           </li>
           <li className="nav-item">
-            <NavLink className="nav-link" to="/main/browseorganiser">
-              Browse Event Organizers
+            <NavLink className="nav-link" to="/admin/addorganizer">
+              Addorganiser
             </NavLink>
           </li>
         </ul>
