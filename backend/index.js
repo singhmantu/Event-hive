@@ -23,6 +23,8 @@ app.use('/event', eventRouter);
 app.use('/review', reviewRouter);
 app.use('/util', utilRouter);
 
+app.use(express.static('./static/uploads'));
+
 app.get('/', (req, res) => {
   res.send('Working Perfectly');
 });

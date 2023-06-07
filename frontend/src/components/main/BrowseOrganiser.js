@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
-import app_config from "../../config";
-import { NavLink } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import app_config from '../../config';
+import { NavLink } from 'react-router-dom';
 
 const BrowseOrganiser = () => {
   const { apiUrl } = app_config;
@@ -22,16 +22,8 @@ const BrowseOrganiser = () => {
       return orgList.map((Organizer, index) => (
         <div className="col-md-4 mb-3">
           <div className="card" style={{ borderRadius: 15 }}>
-            <div
-              className="bg-image hover-overlay ripple ripple-surface ripple-surface-light"
-              data-mdb-ripple-color="light"
-            >
-              <img
-                src={apiUrl+'/'+Organizer.cover}
-                style={{ borderTopLeftRadius: 15, borderTopRightRadius: 15 }}
-                className="img-fluid"
-                alt="Laptop"
-              />
+            <div className="bg-image hover-overlay ripple ripple-surface ripple-surface-light" data-mdb-ripple-color="light">
+              <img src={apiUrl + '/' + Organizer.cover} style={{ borderTopLeftRadius: 15, borderTopRightRadius: 15 }} className="img-fluid" alt="Laptop" />
               <a href="#!">
                 <div className="mask" />
               </a>
@@ -46,14 +38,12 @@ const BrowseOrganiser = () => {
                   </p>
                   <p className="small text-muted">Event</p>
                 </div>
-               
               </div>
             </div>
             <hr className="my-0" />
             <div className="card-body">
               <div className="d-flex justify-content-between align-items-center pb-2 mb-1">
-               
-                <NavLink to={'/main/organiserdetail/'+Organizer._id} className="btn btn-primary">
+                <NavLink to={'/main/organiserdetail/' + Organizer._id} className="btn btn-primary">
                   More Details
                 </NavLink>
               </div>
@@ -67,7 +57,7 @@ const BrowseOrganiser = () => {
   };
 
   return (
-    <section style={{ backgroundColor: "#eee" }}>
+    <section style={{ backgroundColor: '#eee' }}>
       <div className="container py-5">
         <div className="row justify-content-center">{displayEventList()}</div>
       </div>

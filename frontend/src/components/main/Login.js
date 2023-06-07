@@ -2,9 +2,12 @@ import { useFormik } from "formik";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import { useUserContext } from "../context/UserProvider";
 
 const Login = () => {
   const navigate = useNavigate();
+
+  const {setLoggedIn} = useUserContext();
 
   const loginForm = useFormik({
     initialValues: {
@@ -36,8 +39,10 @@ const Login = () => {
           navigate("/admin/addorganizer");
         } else {
           sessionStorage.setItem("user", JSON.stringify(data));
-          navigate("/user/browseorganiser");
+          navigate("/main/browseorganiser");
         }
+
+        setLoggedIn(true);
       } else if (res.status === 401) {
         Swal.fire({
           icon: "error",

@@ -11,11 +11,13 @@ import Organiserdetail from "./components/main/Organiserdetail";
 import AdminAuth from "./auth/AdminAuth";
 import Admin from "./components/admin";
 import Addorganiser from "./components/admin/Addorganiser";
+import UserProvider from "./components/context/UserProvider";
 
 function App() {
   return (
     <div>
       <BrowserRouter>
+      <UserProvider>
         <Toaster position="top-right" />
         <Routes>
           <Route path="/" element={<Navigate to="/main/home" />} />
@@ -38,6 +40,7 @@ function App() {
             <Route path="addorganizer" element={<Addorganiser />} />
           </Route>
         </Routes>
+        </UserProvider>
       </BrowserRouter>
 
     </div>

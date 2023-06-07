@@ -121,32 +121,20 @@ const Addorganiser = () => {
                     <div className="d-flex flex-row align-items-center mb-4">
                       <i className="fas fa-user fa-lg me-3 fa-fw" />
                       <div className=" flex-fill mb-0">
-                        <input
-                          type="text"
+                        <textarea
+                        rows={4}
                           id="description"
                           value={signupForm.values.description}
                           onChange={signupForm.handleChange}
                           className="form-control"
                           placeholder='Description'
-                        />
+                        ></textarea>
                           <span className='text-danger'>{signupForm.errors.description}</span>
                       </div>
                     </div>
 
                     <input type="file" onChange={uploadImage} />
-                    
-                    <div className="form-check d-flex justify-content-center mb-5">
-                      <input
-                        className="form-check-input me-2"
-                        type="checkbox"
-                        defaultValue=""
-                        id="form2Example3c"
-                      />
-                      <label className="form-check-label" htmlFor="form2Example3">
-                        I agree all statements in{" "}
-                        <a href="#!">Terms of service</a>
-                      </label>
-                    </div>
+                   
                     <div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
                       <button type="submit" className="btn btn-primary btn-lg" disabled={signupForm.isSubmitting}>
                        { signupForm.isSubmitting ? <span className="spinner-border spinner-border-sm"></span> : '' } 
