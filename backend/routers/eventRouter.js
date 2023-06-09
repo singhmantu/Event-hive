@@ -15,9 +15,6 @@ router.post('/add', (req, res) => {
         console.error(err);
         res.status(500).json(err);
     });
-
-    
-
 });
 
 router.get('/getall', (req,res) => {
